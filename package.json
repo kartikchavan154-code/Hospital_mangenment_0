@@ -1,0 +1,19 @@
+{
+  "name": "hospital-management-system",
+  "version": "1.0.0",
+  "description": "Full-stack Hospital Management System with React, Node.js, MySQL & ML",
+  "private": true,
+  "scripts": {
+    "server": "cd server && node server.js",
+    "server:dev": "cd server && node server.js",
+    "client": "cd client && npm run dev",
+    "seed": "cd server && node db/seeder.js",
+    "seed:firestore": "cd server && node db/firestoreSeeder.js",
+    "install:server": "cd server && npm install",
+    "install:client": "cd client && npm install",
+    "install:all": "npm run install:server && npm run install:client",
+    "dev": "echo Start server and client in separate terminals: npm run server & npm run client"
+  },
+  "keywords": ["hospital", "management", "react", "nodejs", "mysql"],
+  "license": "MIT"
+}
