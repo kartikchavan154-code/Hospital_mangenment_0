@@ -73,13 +73,14 @@ app.use(errorHandler);
 const dbType = process.env.DB_TYPE || 'firestore';
 const { initializeFirestore } = require('./config/firestore');
 
+if (dbType === 'firestore') {
+  initializeFirestore();
+}
+
 // Start server
 const start = async () => {
   try {
-    if (dbType === 'firestore') {
-      console.log('🔥 Configured Database: Cloud Firestore');
-      initializeFirestore();
-    } else {
+    if (dbType !== 'firestore') {
       console.log('📦 Configured Database: MySQL');
       try {
         await testConnection();
@@ -101,8 +102,11 @@ const start = async () => {
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);
-    process.exit(1);
   }
 };
 
-start();
+if (!process.env.VERCEL) {
+  start();
+}
+
+module.exports = app;

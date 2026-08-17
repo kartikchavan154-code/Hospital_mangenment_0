@@ -1,13 +1,23 @@
 import axios from 'axios';
 
-const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+const resolveApiUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl) return envUrl;
+  if (typeof window !== 'undefined' && window.location.origin) {
+    if (!window.location.origin.includes('localhost:5173') && !window.location.origin.includes('localhost:5174')) {
+      return `${window.location.origin}/api`;
+    }
+  }
+  return 'http://localhost:4000/api';
+};
+
 const getFormattedApiUrl = (url) => {
   const clean = url.replace(/\/$/, '');
   return clean.endsWith('/api') ? clean : `${clean}/api`;
 };
 
 const api = axios.create({
-  baseURL: getFormattedApiUrl(rawApiUrl),
+  baseURL: getFormattedApiUrl(resolveApiUrl()),
   headers: {
     'Content-Type': 'application/json',
   },
