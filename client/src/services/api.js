@@ -3,11 +3,6 @@ import axios from 'axios';
 const resolveApiUrl = () => {
   const envUrl = import.meta.env.VITE_API_URL;
   if (envUrl) return envUrl;
-  if (typeof window !== 'undefined' && window.location.origin) {
-    if (!window.location.origin.includes('localhost:5173') && !window.location.origin.includes('localhost:5174')) {
-      return `${window.location.origin}/api`;
-    }
-  }
   return 'http://localhost:4000/api';
 };
 
