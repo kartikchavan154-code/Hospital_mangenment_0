@@ -220,6 +220,10 @@ const initializeFirestore = () => {
 
   try {
     const projectId = process.env.FIREBASE_PROJECT_ID || 'hospital-mgmt-app';
+    let clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+    if (clientEmail) {
+      clientEmail = clientEmail.trim().replace(/^["']|["']$/g, '');
+    }
     let privateKey = process.env.FIREBASE_PRIVATE_KEY;
     if (privateKey) {
       privateKey = privateKey.trim().replace(/^["']|["']$/g, '').replace(/\\n/g, '\n');
