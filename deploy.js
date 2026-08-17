@@ -72,13 +72,12 @@ async function deployToRender() {
 
   const envVars = [
     { key: 'NODE_ENV', value: 'production' },
-    { key: 'PORT', value: '4000' },
     { key: 'DB_TYPE', value: 'firestore' },
     { key: 'JWT_SECRET', value: 'hospital_jwt_secret_prod_2024_verysecure!' },
     { key: 'JWT_EXPIRES_IN', value: '24h' },
     { key: 'FIREBASE_PROJECT_ID', value: FIREBASE_PROJECT_ID },
     { key: 'FIREBASE_CLIENT_EMAIL', value: FIREBASE_CLIENT_EMAIL },
-    { key: 'FIREBASE_PRIVATE_KEY', value: FIREBASE_PRIVATE_KEY },
+    { key: 'FIREBASE_PRIVATE_KEY', value: FIREBASE_PRIVATE_KEY ? FIREBASE_PRIVATE_KEY.replace(/\n/g, '\\n') : '' },
     { key: 'CLIENT_URL', value: VERCEL_FRONTEND_URL },
     { key: 'ML_SERVICE_URL', value: 'http://localhost:5001' },
   ];
@@ -136,13 +135,13 @@ async function deployToRender() {
       ownerId: ownerId,
       repo: 'https://github.com/kartikchavan154-code/Hospital_mangenment_0',
       autoDeploy: 'yes',
+      rootDir: 'server',
       serviceDetails: {
         env: 'node',
         envSpecificDetails: {
           buildCommand: 'npm install',
           startCommand: 'node server.js'
         },
-        rootDir: 'server',
         plan: 'free',
         region: 'oregon',
         envVars: envVars
