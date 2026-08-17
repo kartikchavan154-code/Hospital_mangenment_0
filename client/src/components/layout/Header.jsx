@@ -57,10 +57,10 @@ const Header = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
           <div style={{ textAlign: 'right' }}>
             <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0f172a', display: 'block' }}>
-              Dr. {user.lastName}
+              {user.role === 'doctor' ? `Dr. ${user.lastName}` : `${user.firstName} ${user.lastName}`}
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'hsl(var(--muted))' }}>
-              Online
+            <span style={{ fontSize: '0.75rem', color: 'hsl(var(--accent))', textTransform: 'capitalize', fontWeight: 600 }}>
+              {user.role}
             </span>
           </div>
           <ChevronDown size={14} style={{ color: 'hsl(var(--muted))' }} />

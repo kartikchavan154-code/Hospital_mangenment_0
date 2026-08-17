@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import Card from '../../components/common/Card';
 import Table from '../../components/common/Table';
 import Pagination from '../../components/common/Pagination';
-import { DollarSign, FileDown, Plus, Eye, X } from 'lucide-react';
+import { FileDown, Plus, X } from 'lucide-react';
 
 const BillingList = () => {
   const { user: authUser } = useAuth();
@@ -25,7 +25,7 @@ const BillingList = () => {
     notes: ''
   });
 
-  const fetchBills = async () => {
+  const fetchBills = useCallback(async () => {
     try {
       setLoading(true);
       const res = await api.get(`/bills?page=${page}&limit=10`);
@@ -34,11 +34,11 @@ const BillingList = () => {
         setPagination(res.data.pagination);
       }
     } catch (err) {
-      console.error(err);
+      console.error('Error fetching bills:', err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [page]);
 
   const fetchPatientsList = async () => {
     try {
@@ -51,7 +51,7 @@ const BillingList = () => {
 
   useEffect(() => {
     fetchBills();
-  }, [page]);
+  }, [fetchBills]);
 
   useEffect(() => {
     if (showForm) {
@@ -68,6 +68,7 @@ const BillingList = () => {
       link.download = `invoice-${invoiceNumber}.pdf`;
       link.click();
     } catch (err) {
+      console.error('Download PDF error:', err);
       alert('Error downloading PDF receipt.');
     }
   };
@@ -115,6 +116,7 @@ const BillingList = () => {
           fetchBills();
         }
       } catch (err) {
+        console.error('Record payment error:', err);
         alert('Error recording payment.');
       }
     }
@@ -140,6 +142,7 @@ const BillingList = () => {
         fetchBills();
       }
     } catch (err) {
+      console.error('Submit bill error:', err);
       alert('Error creating invoice.');
     }
   };

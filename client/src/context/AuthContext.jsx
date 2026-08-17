@@ -26,7 +26,8 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axios.get('/auth/me');
       if (response.data.success) {
-        setUser(response.data.data.user);
+        const { user: userData, profile } = response.data.data;
+        setUser({ ...userData, profile });
       } else {
         logout();
       }
@@ -42,11 +43,12 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axios.post('/auth/login', { email, password });
       if (response.data.success) {
-        const { token, user: loggedUser } = response.data.data;
+        const { token, user: loggedUser, profile } = response.data.data;
         localStorage.setItem('token', token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        setUser(loggedUser);
-        return { success: true, user: loggedUser };
+        const fullUser = { ...loggedUser, profile };
+        setUser(fullUser);
+        return { success: true, user: fullUser };
       }
       return { success: false, message: response.data.message || 'Login failed' };
     } catch (err) {
@@ -61,10 +63,11 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axios.post('/auth/register', userData);
       if (response.data.success) {
-        const { token, user: loggedUser } = response.data.data;
+        const { token, user: loggedUser, profile } = response.data.data;
         localStorage.setItem('token', token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        setUser(loggedUser);
+        const fullUser = { ...loggedUser, profile };
+        setUser(fullUser);
         return { success: true };
       }
       return { success: false, message: response.data.message || 'Registration failed' };

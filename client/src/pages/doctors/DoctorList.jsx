@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import api from '../../services/api';
 import Table from '../../components/common/Table';
 import SearchBar from '../../components/common/SearchBar';
 import Pagination from '../../components/common/Pagination';
 import Card from '../../components/common/Card';
 import { useAuth } from '../../context/AuthContext';
-import { Stethoscope, Plus, X, User } from 'lucide-react';
+import { Stethoscope, Plus, X } from 'lucide-react';
 
 const EMPTY_FORM = {
   firstName: '',
@@ -35,7 +35,7 @@ const DoctorList = () => {
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
 
-  const fetchDoctors = async () => {
+  const fetchDoctors = useCallback(async () => {
     try {
       setLoading(true);
       const res = await api.get(`/doctors?page=${page}&limit=10&search=${search}`);
@@ -48,7 +48,7 @@ const DoctorList = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, search]);
 
   const fetchDepartments = async () => {
     try {
@@ -59,7 +59,7 @@ const DoctorList = () => {
     }
   };
 
-  useEffect(() => { fetchDoctors(); }, [page, search]);
+  useEffect(() => { fetchDoctors(); }, [fetchDoctors]);
   useEffect(() => { if (showForm) fetchDepartments(); }, [showForm]);
 
   const handleChange = (e) => {

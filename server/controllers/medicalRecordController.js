@@ -22,7 +22,26 @@ exports.getAll = async (req, res, next) => {
       if (doctorId) records = records.filter(r => r.doctorId === doctorId);
 
       records.sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1));
-      return res.json({ success: true, data: records, pagination: { total: records.length } });
+
+      const enriched = await Promise.all(records.map(async (rec) => {
+        try {
+          const patient = rec.patientId ? await findById(COLLECTIONS.PATIENTS, rec.patientId) : null;
+          const doctor = rec.doctorId ? await findById(COLLECTIONS.DOCTORS, rec.doctorId) : null;
+          const patUser = patient?.userId ? await findById(COLLECTIONS.USERS, patient.userId) : null;
+          const docUser = doctor?.userId ? await findById(COLLECTIONS.USERS, doctor.userId) : null;
+          const prescriptions = await findWhere(COLLECTIONS.PRESCRIPTIONS, [{ field: 'medicalRecordId', op: '==', value: rec.id }]);
+          return {
+            ...rec,
+            patient: patient ? { ...patient, user: patUser || { firstName: 'Patient', lastName: '' } } : { user: { firstName: 'Patient', lastName: '' } },
+            doctor: doctor ? { ...doctor, user: docUser || { firstName: 'Doctor', lastName: '' } } : { user: { firstName: 'Doctor', lastName: '' } },
+            prescriptions: prescriptions || [],
+          };
+        } catch (e) {
+          return { ...rec, patient: { user: { firstName: 'Patient', lastName: '' } }, doctor: { user: { firstName: 'Doctor', lastName: '' } }, prescriptions: [] };
+        }
+      }));
+
+      return res.json({ success: true, data: enriched, pagination: { total: enriched.length } });
     }
 
     const { page = 1, limit = 10, patientId, doctorId } = req.query;

@@ -55,8 +55,12 @@ const MedicalRecords = () => {
                         {r.createdAt.split('T')[0]}
                       </div>
                     </td>
-                    <td style={{ fontWeight: 600 }}>{r.patient.user.firstName} {r.patient.user.lastName}</td>
-                    <td>Dr. {r.doctor.user.firstName} {r.doctor.user.lastName}</td>
+                    <td style={{ fontWeight: 600 }}>
+                      {r.patient?.user ? `${r.patient.user.firstName} ${r.patient.user.lastName}` : 'Patient'}
+                    </td>
+                    <td>
+                      {r.doctor?.user ? `Dr. ${r.doctor.user.firstName} ${r.doctor.user.lastName}` : 'Doctor'}
+                    </td>
                     <td style={{ color: 'hsl(var(--accent))', fontWeight: 600 }}>{r.diagnosis}</td>
                     <td>{r.symptoms || 'N/A'}</td>
                     <td>

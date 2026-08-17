@@ -11,6 +11,7 @@ import DoctorList from './pages/doctors/DoctorList';
 import AppointmentList from './pages/appointments/AppointmentList';
 import BillingList from './pages/billing/BillingList';
 import MedicalRecords from './pages/records/MedicalRecords';
+import UserList from './pages/users/UserList';
 import AuditLogs from './pages/settings/AuditLogs';
 import Analytics from './pages/analytics/Analytics';
 
@@ -98,7 +99,7 @@ function AppRoutes() {
       {/* Admin specific routes */}
       <Route path="/users" element={
         <ProtectedRoute allowedRoles={['admin']}>
-          <div style={{ color: '#0f172a' }}><h2>Users accounts manager placeholder</h2></div>
+          <UserList />
         </ProtectedRoute>
       } />
       <Route path="/analytics" element={

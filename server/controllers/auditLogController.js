@@ -1,12 +1,53 @@
 const { AuditLog, User } = require('../models');
 const { Op } = require('sequelize');
 const { formatPaginationResponse } = require('../utils/helpers');
+const { COLLECTIONS, listAll, findById } = require('../db/firestoreAdapter');
+const dbType = () => process.env.DB_TYPE || 'firestore';
 
 exports.getAll = async (req, res, next) => {
   try {
     const { page = 1, limit = 20, entity, action, userId, dateFrom, dateTo } = req.query;
-    const where = {};
 
+    if (dbType() === 'firestore') {
+      let logs = await listAll(COLLECTIONS.AUDIT_LOGS);
+
+      if (entity) logs = logs.filter(l => l.entity === entity);
+      if (action) logs = logs.filter(l => l.action === action);
+      if (userId) logs = logs.filter(l => l.userId === userId);
+      if (dateFrom && dateTo) {
+        logs = logs.filter(l => l.createdAt >= dateFrom && l.createdAt <= dateTo);
+      }
+
+      logs.sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1));
+
+      const users = await listAll(COLLECTIONS.USERS);
+      const enriched = logs.map(log => {
+        const userObj = users.find(u => u.id === log.userId);
+        let user = null;
+        if (userObj) {
+          user = {
+            firstName: userObj.firstName,
+            lastName: userObj.lastName,
+            email: userObj.email,
+            role: userObj.role,
+          };
+        }
+        return { ...log, user };
+      });
+
+      const total = enriched.length;
+      const pageNum = parseInt(page, 10);
+      const limitNum = parseInt(limit, 10);
+      const paginated = enriched.slice((pageNum - 1) * limitNum, pageNum * limitNum);
+
+      return res.json({
+        success: true,
+        data: paginated,
+        pagination: { total, page: pageNum, limit: limitNum, totalPages: Math.ceil(total / limitNum) },
+      });
+    }
+
+    const where = {};
     if (entity) where.entity = entity;
     if (action) where.action = action;
     if (userId) where.userId = userId;
@@ -27,3 +68,4 @@ exports.getAll = async (req, res, next) => {
     next(error);
   }
 };
+

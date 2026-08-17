@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import Card from '../../components/common/Card';
@@ -31,9 +31,8 @@ const AppointmentList = () => {
   
   // Wait time predicted state
   const [predictedWait, setPredictedWait] = useState(null);
-  const [predictingWait, setPredictingWait] = useState(false);
 
-  const fetchAppointments = async () => {
+  const fetchAppointments = useCallback(async () => {
     try {
       setLoading(true);
       const res = await api.get(`/appointments?page=${page}&limit=10`);
@@ -46,7 +45,7 @@ const AppointmentList = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page]);
 
   const fetchFormMetadata = async () => {
     try {
@@ -63,7 +62,7 @@ const AppointmentList = () => {
 
   useEffect(() => {
     fetchAppointments();
-  }, [page]);
+  }, [fetchAppointments]);
 
   useEffect(() => {
     if (showForm) {
@@ -81,7 +80,6 @@ const AppointmentList = () => {
             setSlots(res.data.data.availableSlots || []);
             
             // Run ML delay prediction proxy
-            setPredictingWait(true);
             const mlRes = await api.post('/ml/predict/wait-time', {
               doctorId: formData.doctorId,
               dayOfWeek: new Date(formData.appointmentDate).getDay() || 7,
@@ -94,8 +92,6 @@ const AppointmentList = () => {
           }
         } catch (err) {
           console.error(err);
-        } finally {
-          setPredictingWait(false);
         }
       };
       fetchSlots();

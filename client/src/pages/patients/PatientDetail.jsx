@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import Card from '../../components/common/Card';
-import Table from '../../components/common/Table';
-import { Calendar, Plus, Activity, Heart, ShieldAlert, Sparkles, FileText } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const PatientDetail = () => {
@@ -27,7 +26,7 @@ const PatientDetail = () => {
   const [mlPredictions, setMlPredictions] = useState(null);
   const [predictingRisk, setPredictingRisk] = useState(false);
 
-  const fetchPatientData = async () => {
+  const fetchPatientData = useCallback(async () => {
     try {
       setLoading(true);
       const [patientRes, historyRes] = await Promise.all([
@@ -41,11 +40,11 @@ const PatientDetail = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     fetchPatientData();
-  }, [id]);
+  }, [fetchPatientData]);
 
   const handleVitalsChange = (e) => {
     setVitals({ ...vitals, [e.target.name]: e.target.value });
@@ -71,9 +70,10 @@ const PatientDetail = () => {
     
     setSubmittingRecord(true);
     try {
+      const docId = authUser.profile?.id || (authUser.role === 'doctor' ? authUser.id : 'doc-1');
       const payload = {
         patientId: id,
-        doctorId: authUser.role === 'doctor' ? authUser.id : 1, // fallback to doc id
+        doctorId: docId,
         diagnosis,
         symptoms,
         vitals,
@@ -92,6 +92,7 @@ const PatientDetail = () => {
         fetchPatientData();
       }
     } catch (err) {
+      console.error('Error logging medical record:', err);
       alert('Error logging medical record.');
     } finally {
       setSubmittingRecord(false);
