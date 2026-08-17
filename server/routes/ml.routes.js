@@ -6,7 +6,7 @@ router.use(authenticate);
 
 router.post('/predict/wait-time', async (req, res) => {
   try {
-    const mlUrl = process.env.ML_SERVICE_URL || 'http://localhost:5001';
+    const mlUrl = (process.env.ML_SERVICE_URL || 'http://localhost:5001').replace(/\/$/, '');
     const response = await fetch(`${mlUrl}/predict/wait-time`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -41,7 +41,7 @@ router.post('/predict/wait-time', async (req, res) => {
 
 router.post('/predict/disease-risk', async (req, res) => {
   try {
-    const mlUrl = process.env.ML_SERVICE_URL || 'http://localhost:5001';
+    const mlUrl = (process.env.ML_SERVICE_URL || 'http://localhost:5001').replace(/\/$/, '');
     const response = await fetch(`${mlUrl}/predict/disease-risk`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

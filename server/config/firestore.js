@@ -229,7 +229,7 @@ const initializeFirestore = () => {
       ? path.resolve(__dirname, '..', process.env.FIREBASE_SERVICE_ACCOUNT_PATH)
       : path.resolve(__dirname, 'firebase-service-account.json');
 
-    const hasValidKey = privateKey && !privateKey.includes('YOUR_KEY_HERE') && !privateKey.includes('BEGIN PRIVATE KEY');
+    const hasValidKey = privateKey && !privateKey.includes('YOUR_KEY_HERE') && privateKey.includes('BEGIN PRIVATE KEY');
     const hasServiceFile = fs.existsSync(serviceAccountPath);
     const hasEmulator = Boolean(process.env.FIRESTORE_EMULATOR_HOST);
 

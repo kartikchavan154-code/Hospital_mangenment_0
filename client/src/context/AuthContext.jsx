@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Initialize axios configuration
-  axios.defaults.baseURL = 'http://localhost:4000/api';
+  axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
   useEffect(() => {
     const token = localStorage.getItem('token');
