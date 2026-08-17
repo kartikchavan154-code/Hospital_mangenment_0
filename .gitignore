@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Production builds
+dist/
+build/
+**/dist/
+
+# Environment and sensitive keys
+.env
+.env.local
+*.pem
+*firebase-adminsdk*.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / Editor junk
+.DS_Store
+.vscode/
+.idea/

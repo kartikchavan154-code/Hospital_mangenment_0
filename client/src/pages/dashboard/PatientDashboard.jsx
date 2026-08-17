@@ -40,7 +40,7 @@ const PatientDashboard = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div>
-        <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Your Health Portal</h1>
+        <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Your Health Portal</h1>
         <p style={{ color: 'hsl(var(--muted))' }}>Access your appointments, billing receipts, prescriptions, and health summaries.</p>
       </div>
 
@@ -50,7 +50,7 @@ const PatientDashboard = () => {
           title="Next Consultation Slot" 
           value={nextAppt ? nextAppt.appointmentTime : 'None'} 
           icon={Calendar} 
-          description={nextAppt ? `Dr. ${nextAppt.doctor.user.lastName} on ${nextAppt.appointmentDate}` : 'No upcoming visits'} 
+          description={nextAppt ? `Dr. ${nextAppt.doctor?.user?.lastName || 'Specialist'} on ${nextAppt.appointmentDate}` : 'No upcoming visits'} 
           color="#6366f1" 
         />
         <StatCard title="Medical Reports" value={history.length} icon={FileHeart} description="Registered records" color="#06b6d4" />
@@ -66,7 +66,7 @@ const PatientDashboard = () => {
             ) : (
               history.map((h) => (
                 <tr key={h.id}>
-                  <td style={{ color: '#fff', fontWeight: 600 }}>{h.createdAt.split('T')[0]}</td>
+                  <td style={{ color: '#0f172a', fontWeight: 600 }}>{h.createdAt.split('T')[0]}</td>
                   <td>
                     <div style={{ fontWeight: 600, color: 'hsl(var(--accent))' }}>{h.diagnosis}</div>
                     <div style={{ fontSize: '0.75rem', color: 'hsl(var(--muted))' }}>Symptoms: {h.symptoms}</div>
@@ -97,7 +97,7 @@ const PatientDashboard = () => {
             ) : (
               bills.map((b) => (
                 <tr key={b.id}>
-                  <td style={{ color: '#fff', fontWeight: 600 }}>{b.invoiceNumber}</td>
+                  <td style={{ color: '#0f172a', fontWeight: 600 }}>{b.invoiceNumber}</td>
                   <td style={{ fontWeight: 600 }}>₹{parseFloat(b.totalAmount).toFixed(2)}</td>
                   <td>
                     <span className={`badge badge-${b.status === 'paid' ? 'success' : 'danger'}`}>

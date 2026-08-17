@@ -148,7 +148,7 @@ const BillingList = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Billing Ledger & Receipts</h1>
+          <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Billing Ledger & Receipts</h1>
           <p style={{ color: 'hsl(var(--muted))' }}>Generate clinical invoices, issue receipts and review payment ledger statements.</p>
         </div>
         {['admin', 'receptionist'].includes(authUser.role) && (
@@ -185,7 +185,7 @@ const BillingList = () => {
 
             {/* Line items rows */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <strong style={{ fontSize: '0.85rem', color: '#fff' }}>Bill Line Items</strong>
+              <strong style={{ fontSize: '0.85rem', color: '#0f172a' }}>Bill Line Items</strong>
               {formData.items.map((item, idx) => (
                 <div key={idx} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr 1fr 1fr 30px', gap: '8px', alignItems: 'center' }}>
                   <input type="text" name="name" value={item.name} onChange={(e) => handleItemChange(idx, e)} placeholder="Item / Service Name" required />
@@ -235,7 +235,7 @@ const BillingList = () => {
               ) : (
                 bills.map((b) => (
                   <tr key={b.id}>
-                    <td style={{ color: '#fff', fontWeight: 600 }}>{b.invoiceNumber}</td>
+                    <td style={{ color: '#0f172a', fontWeight: 600 }}>{b.invoiceNumber}</td>
                     <td>{b.patient.user.firstName} {b.patient.user.lastName}</td>
                     <td style={{ color: 'hsl(var(--accent))', fontWeight: 600 }}>₹{parseFloat(b.totalAmount).toFixed(2)}</td>
                     <td>₹{parseFloat(b.tax).toFixed(2)} / -₹{parseFloat(b.discount).toFixed(2)}</td>

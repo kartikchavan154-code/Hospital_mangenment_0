@@ -21,7 +21,21 @@ exports.getAll = async (req, res, next) => {
       if (search) bills = bills.filter(b => b.invoiceNumber?.toLowerCase().includes(search.toLowerCase()));
 
       bills.sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1));
-      return res.json({ success: true, data: bills, pagination: { total: bills.length } });
+
+      const enriched = await Promise.all(bills.map(async (bill) => {
+        try {
+          const patient = bill.patientId ? await findById(COLLECTIONS.PATIENTS, bill.patientId) : null;
+          const patUser = patient?.userId ? await findById(COLLECTIONS.USERS, patient.userId) : null;
+          return {
+            ...bill,
+            patient: patient ? { ...patient, user: patUser || { firstName: 'Patient', lastName: '' } } : { user: { firstName: 'Patient', lastName: '' } },
+          };
+        } catch (e) {
+          return { ...bill, patient: { user: { firstName: 'Patient', lastName: '' } } };
+        }
+      }));
+
+      return res.json({ success: true, data: enriched, pagination: { total: enriched.length } });
     }
 
     const { page = 1, limit = 10, status, patientId, search } = req.query;

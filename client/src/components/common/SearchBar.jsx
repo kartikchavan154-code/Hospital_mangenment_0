@@ -11,8 +11,8 @@ const SearchBar = ({ value, onChange, placeholder = 'Search...' }) => {
         placeholder={placeholder}
         style={{
           paddingLeft: '40px',
-          backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          border: '1px solid rgba(255, 255, 255, 0.08)'
+          backgroundColor: '#ffffff',
+          border: '1px solid #cbd5e1'
         }}
       />
       <Search size={18} style={{

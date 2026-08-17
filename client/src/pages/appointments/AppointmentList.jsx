@@ -144,7 +144,7 @@ const AppointmentList = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Appointments Registry</h1>
+          <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Appointments Registry</h1>
           <p style={{ color: 'hsl(var(--muted))' }}>Book, reschedule and monitor doctor-patient schedules.</p>
         </div>
         {authUser.role !== 'doctor' && (
@@ -253,7 +253,7 @@ const AppointmentList = () => {
               ) : (
                 appointments.map((a) => (
                   <tr key={a.id}>
-                    <td style={{ color: '#fff', fontWeight: 600 }}>
+                    <td style={{ color: '#0f172a', fontWeight: 600 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <Calendar size={14} style={{ color: 'hsl(var(--primary))' }} />
                         {a.appointmentDate}

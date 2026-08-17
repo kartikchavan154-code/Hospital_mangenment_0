@@ -108,16 +108,21 @@ const getRevenueByMonth = async (months = 12) => {
 const getDoctorWorkload = async () => {
   const dbType = process.env.DB_TYPE || 'firestore';
   if (dbType === 'firestore') {
-    const { listAll, COLLECTIONS } = require('../db/firestoreAdapter');
+    const { listAll, findById, COLLECTIONS } = require('../db/firestoreAdapter');
     const doctors = await listAll(COLLECTIONS.DOCTORS);
     const appointments = await listAll(COLLECTIONS.APPOINTMENTS);
+    const users = await listAll(COLLECTIONS.USERS);
 
     return doctors.map(doc => {
       const apptCount = appointments.filter(a => a.doctorId === doc.id).length;
+      const user = users.find(u => u.id === doc.userId) || { firstName: 'Unknown', lastName: '' };
       return {
         doctorId: doc.id,
         appointmentCount: apptCount,
-        doctor: { specialization: doc.specialization },
+        doctor: {
+          specialization: doc.specialization,
+          user: { firstName: user.firstName || 'Unknown', lastName: user.lastName || '' },
+        },
       };
     });
   }
@@ -225,9 +230,27 @@ const getDepartmentDistribution = async () => {
 const getRecentActivity = async (limit = 10) => {
   const dbType = process.env.DB_TYPE || 'firestore';
   if (dbType === 'firestore') {
-    const { listAll, COLLECTIONS } = require('../db/firestoreAdapter');
+    const { listAll, findById, COLLECTIONS } = require('../db/firestoreAdapter');
     const appointments = await listAll(COLLECTIONS.APPOINTMENTS);
-    return appointments.slice(0, limit);
+    const users = await listAll(COLLECTIONS.USERS);
+    const patients = await listAll(COLLECTIONS.PATIENTS);
+    const doctors = await listAll(COLLECTIONS.DOCTORS);
+
+    const recent = appointments
+      .sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1))
+      .slice(0, limit);
+
+    return recent.map(appt => {
+      const patient = patients.find(p => p.id === appt.patientId) || {};
+      const doctor  = doctors.find(d => d.id === appt.doctorId)   || {};
+      const patUser = users.find(u => u.id === patient.userId) || { firstName: 'Unknown', lastName: '' };
+      const docUser = users.find(u => u.id === doctor.userId)  || { firstName: 'Unknown', lastName: '' };
+      return {
+        ...appt,
+        patient: { ...patient, user: { firstName: patUser.firstName || 'Unknown', lastName: patUser.lastName || '' } },
+        doctor:  { ...doctor,  user: { firstName: docUser.firstName || 'Unknown', lastName: docUser.lastName || '' } },
+      };
+    });
   }
 
   try {

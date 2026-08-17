@@ -32,7 +32,7 @@ const AuditLogs = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div>
-        <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Security Audit Ledger</h1>
+        <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Security Audit Ledger</h1>
         <p style={{ color: 'hsl(var(--muted))' }}>Detailed audit trail tracking system modifications, authentication logs and operations records.</p>
       </div>
 
@@ -47,7 +47,7 @@ const AuditLogs = () => {
               ) : (
                 logs.map((log) => (
                   <tr key={log.id}>
-                    <td style={{ color: '#fff', fontWeight: 600 }}>{new Date(log.createdAt).toLocaleString()}</td>
+                    <td style={{ color: '#0f172a', fontWeight: 600 }}>{new Date(log.createdAt).toLocaleString()}</td>
                     <td>
                       {log.user ? (
                         <div>

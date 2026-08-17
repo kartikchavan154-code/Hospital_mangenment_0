@@ -128,7 +128,7 @@ const PatientDetail = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>
+          <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>
             Patient: {patient.user?.firstName} {patient.user?.lastName}
           </h1>
           <p style={{ color: 'hsl(var(--muted))' }}>Comprehensive medical chart history.</p>
@@ -150,7 +150,7 @@ const PatientDetail = () => {
               <div><strong>Address:</strong> {patient.address || 'N/A'}</div>
               <div><strong>Emergency Person:</strong> {patient.emergencyContact}</div>
               <div><strong>Emergency Phone:</strong> {patient.emergencyPhone}</div>
-              <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '10px', marginTop: '10px' }}>
+              <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '10px', marginTop: '10px' }}>
                 <strong>Insurance Provider:</strong> {patient.insuranceProvider || 'Self-pay'}
                 {patient.insuranceNumber && <div>Policy: {patient.insuranceNumber}</div>}
               </div>
@@ -181,10 +181,11 @@ const PatientDetail = () => {
                 </button>
 
                 {mlPredictions && (
-                  <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <h4 style={{ fontSize: '0.85rem', color: '#fff' }}>Predicted Risks:</h4>
+                  <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <h3 style={{ borderBottom: '1px solid #e2e8f0', paddingBottom: '8px', color: '#0f172a', fontSize: '1rem' }}>Demographic Details</h3>
+                    <h4 style={{ fontSize: '0.85rem', color: '#0f172a' }}>Predicted Risks:</h4>
                     {mlPredictions.map((r, i) => (
-                      <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', backgroundColor: 'rgba(255,255,255,0.02)', padding: '6px 8px', borderRadius: '4px' }}>
+                      <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', backgroundColor: '#f8fafc', padding: '6px 8px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
                         <span>{r.disease}</span>
                         <span style={{ color: r.severity === 'high' ? '#f87171' : '#fbbf24', fontWeight: 600 }}>{(r.probability * 100).toFixed(0)}% ({r.severity})</span>
                       </div>
@@ -256,9 +257,9 @@ const PatientDetail = () => {
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {history.map((record) => (
-                  <div key={record.id} style={{ border: '1px solid rgba(255,255,255,0.06)', borderRadius: 'var(--radius-sm)', padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.04)', paddingBottom: '8px' }}>
-                      <span style={{ fontWeight: 600, color: '#fff', fontSize: '0.95rem' }}>{record.diagnosis}</span>
+                  <div key={record.id} style={{ border: '1px solid #e2e8f0', borderRadius: 'var(--radius-sm)', padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px', backgroundColor: '#f8fafc' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                      <span style={{ fontWeight: 600, color: '#0f172a', fontSize: '0.95rem' }}>{record.diagnosis}</span>
                       <span style={{ fontSize: '0.8rem', color: 'hsl(var(--muted))' }}>Consulted on {record.createdAt.split('T')[0]}</span>
                     </div>
 
@@ -285,7 +286,7 @@ const PatientDetail = () => {
                         <strong style={{ fontSize: '0.8rem', display: 'block', marginBottom: '4px' }}>Prescriptions:</strong>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                           {record.prescriptions.map((presc, idx) => (
-                            <div key={idx} style={{ fontSize: '0.8rem', backgroundColor: 'rgba(255,255,255,0.02)', padding: '6px 10px', borderRadius: '4px' }}>
+                            <div key={idx} style={{ fontSize: '0.8rem', backgroundColor: '#f0f7ff', padding: '6px 10px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
                               🧪 <strong>{presc.medication}</strong> - {presc.dosage} | {presc.frequency} | {presc.duration}
                             </div>
                           ))}

@@ -34,7 +34,7 @@ const MedicalRecords = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div>
-        <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Clinical Medical Records</h1>
+        <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Clinical Medical Records</h1>
         <p style={{ color: 'hsl(var(--muted))' }}>Review diagnostic charts, consultations history and pharmaceutical prescriptions.</p>
       </div>
 
@@ -49,7 +49,7 @@ const MedicalRecords = () => {
               ) : (
                 records.map((r) => (
                   <tr key={r.id}>
-                    <td style={{ color: '#fff', fontWeight: 600 }}>
+                    <td style={{ color: '#0f172a', fontWeight: 600 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <FileText size={14} style={{ color: 'hsl(var(--primary))' }} />
                         {r.createdAt.split('T')[0]}

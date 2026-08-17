@@ -60,7 +60,7 @@ const DoctorDashboard = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div>
-        <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Welcome, Dr. {user.lastName}</h1>
+        <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Welcome, Dr. {user?.lastName || 'Doctor'}</h1>
         <p style={{ color: 'hsl(var(--muted))' }}>Review your current consultations, patient list and scheduling forecast details.</p>
       </div>
 
@@ -85,17 +85,19 @@ const DoctorDashboard = () => {
             <tr><td colSpan="6" style={{ textAlign: 'center', color: 'hsl(var(--muted))' }}>No appointments booked for today.</td></tr>
           ) : (
             schedule.map((a) => {
-              const birthYear = a.patient.dateOfBirth ? new Date(a.patient.dateOfBirth).getFullYear() : null;
+              const birthYear = a.patient?.dateOfBirth ? new Date(a.patient.dateOfBirth).getFullYear() : null;
               const age = birthYear ? new Date().getFullYear() - birthYear : 'N/A';
+              const patientFirstName = a.patient?.user?.firstName || 'Patient';
+              const patientLastName = a.patient?.user?.lastName || '';
               return (
                 <tr key={a.id}>
-                  <td style={{ fontWeight: 600, color: '#fff' }}>{a.appointmentTime}</td>
+                  <td style={{ fontWeight: 600, color: '#0f172a' }}>{a.appointmentTime}</td>
                   <td style={{ color: 'hsl(var(--accent))', fontWeight: 600 }}>
-                    {a.patient.user.firstName} {a.patient.user.lastName}
+                    {patientFirstName} {patientLastName}
                   </td>
-                  <td>{age} yrs</td>
-                  <td>{a.patient.bloodGroup || 'N/A'}</td>
-                  <td>{a.reason}</td>
+                  <td>{age} {age !== 'N/A' ? 'yrs' : ''}</td>
+                  <td>{a.patient?.bloodGroup || 'N/A'}</td>
+                  <td>{a.reason || 'N/A'}</td>
                   <td>
                     <span className={`badge badge-${a.status === 'completed' ? 'success' : 'warning'}`}>
                       {a.status}

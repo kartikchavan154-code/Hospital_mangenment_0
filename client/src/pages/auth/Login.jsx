@@ -72,7 +72,7 @@ const Login = () => {
           }}>
             <Shield size={24} />
           </div>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff' }}>Secure Portal Login</h2>
+          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#0f172a' }}>Secure Portal Login</h2>
           <p style={{ fontSize: '0.85rem', color: 'hsl(var(--muted))' }}>Enter your credentials to access the Hospital System</p>
         </div>
 
@@ -80,7 +80,7 @@ const Login = () => {
           <div style={{
             backgroundColor: 'rgba(239, 68, 68, 0.15)',
             border: '1px solid rgba(239, 68, 68, 0.25)',
-            color: '#f87171',
+            color: '#dc2626',
             padding: '12px',
             borderRadius: 'var(--radius-sm)',
             fontSize: '0.85rem',
@@ -146,7 +146,7 @@ const Login = () => {
 
         {/* Quick Demo Access Credentials */}
         <div style={{
-          borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+          borderTop: '1px solid #e2e8f0',
           paddingTop: '20px',
           display: 'flex',
           flexDirection: 'column',

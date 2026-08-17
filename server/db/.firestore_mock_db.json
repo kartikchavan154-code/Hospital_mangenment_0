@@ -55,6 +55,30 @@
       "id": "doc_sa3l13ctb",
       "createdAt": "2026-07-23T17:55:00.374Z",
       "updatedAt": "2026-07-23T17:55:00.374Z"
+    },
+    "doc_wharb5a4a": {
+      "email": "karan155@gmail.com",
+      "password": "$2a$10$ueoLgTAKO/IEZInIN2gWOOfI2WTVzC4qgeEgi66JDuJJeJUlZrpza",
+      "firstName": "Karan",
+      "lastName": "Almad",
+      "phone": "6732563747",
+      "role": "patient",
+      "isActive": true,
+      "id": "doc_wharb5a4a",
+      "createdAt": "2026-08-17T10:07:32.008Z",
+      "updatedAt": "2026-08-17T10:07:32.008Z"
+    },
+    "doc_yrmskjab4": {
+      "email": "arjun@doctor.in",
+      "password": "$2a$10$4Eeu2B59MKCHvugddQKK2uruakRm9jNG14gF5xJ.Z5oquR1FbLzKy",
+      "firstName": "Arjun",
+      "lastName": "Sharma",
+      "phone": "6732563748",
+      "role": "doctor",
+      "isActive": true,
+      "id": "doc_yrmskjab4",
+      "createdAt": "2026-08-17T10:27:13.755Z",
+      "updatedAt": "2026-08-17T10:27:13.755Z"
     }
   },
   "doctors": {
@@ -66,6 +90,18 @@
       "qualification": "MD, DM Cardiology",
       "experience": 15,
       "consultationFee": 200
+    },
+    "doc_p7iqyi6jp": {
+      "userId": "doc_yrmskjab4",
+      "departmentId": "",
+      "specialization": "Neurologist",
+      "experience": "5",
+      "consultationFee": "900",
+      "licenseNumber": "MCI-8765",
+      "bio": "MD,DNB,MBBS",
+      "id": "doc_p7iqyi6jp",
+      "createdAt": "2026-08-17T10:27:13.763Z",
+      "updatedAt": "2026-08-17T10:27:13.763Z"
     }
   },
   "patients": {
@@ -91,6 +127,21 @@
       "id": "doc_qaylneqjb",
       "createdAt": "2026-07-23T17:55:00.376Z",
       "updatedAt": "2026-07-23T17:55:00.376Z"
+    },
+    "doc_1zru5doqy": {
+      "userId": "doc_wharb5a4a",
+      "dateOfBirth": "2005-06-12",
+      "gender": "male",
+      "bloodGroup": "O+",
+      "address": "kalaburagi",
+      "emergencyContact": "78325866",
+      "emergencyPhone": "67437783",
+      "allergies": "dust",
+      "insuranceProvider": "NA",
+      "insuranceNumber": "NA",
+      "id": "doc_1zru5doqy",
+      "createdAt": "2026-08-17T10:07:32.012Z",
+      "updatedAt": "2026-08-17T10:07:32.012Z"
     }
   },
   "audit_logs": {
@@ -372,9 +423,209 @@
       "createdAt": "2026-07-23T17:55:00.378Z",
       "id": "doc_p6tlvn96o",
       "updatedAt": "2026-07-23T17:55:00.378Z"
+    },
+    "doc_rwqu1ge7k": {
+      "userId": "usr-admin-1",
+      "action": "LOGIN",
+      "entity": "User",
+      "entityId": "usr-admin-1",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:04:42.305Z",
+      "id": "doc_rwqu1ge7k",
+      "updatedAt": "2026-08-17T10:04:42.305Z"
+    },
+    "doc_ogdujce10": {
+      "userId": "usr-admin-1",
+      "action": "CREATE",
+      "entity": "Patient",
+      "entityId": "doc_1zru5doqy",
+      "previousData": null,
+      "newData": {
+        "firstName": "Karan",
+        "lastName": "Almad",
+        "email": "karan155@gmail.com",
+        "phone": "6732563747",
+        "password": "kar@123",
+        "dateOfBirth": "2005-06-12",
+        "gender": "male",
+        "bloodGroup": "O+",
+        "address": "kalaburagi",
+        "emergencyContact": "78325866",
+        "emergencyPhone": "67437783",
+        "allergies": "dust",
+        "insuranceProvider": "NA",
+        "insuranceNumber": "NA"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:07:32.015Z",
+      "id": "doc_ogdujce10",
+      "updatedAt": "2026-08-17T10:07:32.015Z"
+    },
+    "doc_vu5km9cf2": {
+      "userId": "doc_wharb5a4a",
+      "action": "LOGIN",
+      "entity": "User",
+      "entityId": "doc_wharb5a4a",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:08:11.689Z",
+      "id": "doc_vu5km9cf2",
+      "updatedAt": "2026-08-17T10:08:11.689Z"
+    },
+    "doc_svd8didie": {
+      "userId": "usr-doc-1",
+      "action": "LOGIN",
+      "entity": "User",
+      "entityId": "usr-doc-1",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:09:00.606Z",
+      "id": "doc_svd8didie",
+      "updatedAt": "2026-08-17T10:09:00.606Z"
+    },
+    "doc_3w02z8144": {
+      "userId": "usr-reception-1",
+      "action": "LOGIN",
+      "entity": "User",
+      "entityId": "usr-reception-1",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:09:58.413Z",
+      "id": "doc_3w02z8144",
+      "updatedAt": "2026-08-17T10:09:58.413Z"
+    },
+    "doc_0h5iynmk8": {
+      "userId": "usr-reception-1",
+      "action": "CREATE",
+      "entity": "Appointment",
+      "entityId": "doc_in4s3ga46",
+      "previousData": null,
+      "newData": {
+        "patientId": "doc_qaylneqjb",
+        "doctorId": "doc-1",
+        "appointmentDate": "2026-08-17",
+        "appointmentTime": "12:00:00",
+        "type": "consultation",
+        "reason": "heart pain"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:13:55.732Z",
+      "id": "doc_0h5iynmk8",
+      "updatedAt": "2026-08-17T10:13:55.732Z"
+    },
+    "doc_w8ncdnn87": {
+      "userId": "usr-reception-1",
+      "action": "CREATE",
+      "entity": "Appointment",
+      "entityId": "doc_en0p0ik89",
+      "previousData": null,
+      "newData": {
+        "patientId": "doc_1zru5doqy",
+        "doctorId": "doc-1",
+        "appointmentDate": "2026-08-17",
+        "appointmentTime": "11:30:00",
+        "type": "routine-checkup",
+        "reason": "heart check up"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:19:35.393Z",
+      "id": "doc_w8ncdnn87",
+      "updatedAt": "2026-08-17T10:19:35.393Z"
+    },
+    "doc_1v25iuivb": {
+      "userId": "usr-admin-1",
+      "action": "LOGIN",
+      "entity": "User",
+      "entityId": "usr-admin-1",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:20:09.381Z",
+      "id": "doc_1v25iuivb",
+      "updatedAt": "2026-08-17T10:20:09.381Z"
+    },
+    "doc_4s97vdnu5": {
+      "userId": "usr-admin-1",
+      "action": "CREATE",
+      "entity": "Doctor",
+      "entityId": "doc_p7iqyi6jp",
+      "previousData": null,
+      "newData": {
+        "firstName": "Arjun",
+        "lastName": "Sharma",
+        "email": "arjun@doctor.in",
+        "password": "arjun@123",
+        "phone": "6732563748",
+        "departmentId": "",
+        "specialization": "Neurologist",
+        "experience": "5",
+        "consultationFee": "900",
+        "licenseNumber": "MCI-8765",
+        "bio": "MD,DNB,MBBS"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:27:13.768Z",
+      "id": "doc_4s97vdnu5",
+      "updatedAt": "2026-08-17T10:27:13.768Z"
+    },
+    "doc_ykcidk4el": {
+      "userId": "usr-doc-1",
+      "action": "LOGIN",
+      "entity": "User",
+      "entityId": "usr-doc-1",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:27:56.966Z",
+      "id": "doc_ykcidk4el",
+      "updatedAt": "2026-08-17T10:27:56.966Z"
+    },
+    "doc_rumabccaz": {
+      "userId": "doc_wharb5a4a",
+      "action": "LOGIN",
+      "entity": "User",
+      "entityId": "doc_wharb5a4a",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-08-17T10:30:59.319Z",
+      "id": "doc_rumabccaz",
+      "updatedAt": "2026-08-17T10:30:59.319Z"
     }
   },
-  "appointments": {},
+  "appointments": {
+    "doc_in4s3ga46": {
+      "patientId": "doc_qaylneqjb",
+      "doctorId": "doc-1",
+      "appointmentDate": "2026-08-17",
+      "appointmentTime": "12:00:00",
+      "duration": 30,
+      "type": "consultation",
+      "reason": "heart pain",
+      "status": "scheduled",
+      "id": "doc_in4s3ga46",
+      "createdAt": "2026-08-17T10:13:55.728Z",
+      "updatedAt": "2026-08-17T10:13:55.728Z"
+    },
+    "doc_en0p0ik89": {
+      "patientId": "doc_1zru5doqy",
+      "doctorId": "doc-1",
+      "appointmentDate": "2026-08-17",
+      "appointmentTime": "11:30:00",
+      "duration": 30,
+      "type": "routine-checkup",
+      "reason": "heart check up",
+      "status": "scheduled",
+      "id": "doc_en0p0ik89",
+      "createdAt": "2026-08-17T10:19:35.386Z",
+      "updatedAt": "2026-08-17T10:19:35.386Z"
+    }
+  },
   "bills": {},
   "departments": {},
   "medical_records": {}

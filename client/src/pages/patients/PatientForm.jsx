@@ -96,7 +96,7 @@ const PatientForm = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', maxWidth: '800px', margin: '0 auto', width: '100%' }}>
       <div>
-        <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>
+        <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>
           {isEdit ? 'Modify Patient Details' : 'Register Clinical Patient'}
         </h1>
         <p style={{ color: 'hsl(var(--muted))' }}>Enter the clinical demographic information and system user credentials.</p>
@@ -104,7 +104,7 @@ const PatientForm = () => {
 
       <Card>
         {error && (
-          <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.25)', color: '#f87171', padding: '12px', borderRadius: 'var(--radius-sm)', marginBottom: '20px', textAlign: 'center' }}>
+          <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.25)', color: '#dc2626', padding: '12px', borderRadius: 'var(--radius-sm)', marginBottom: '20px', textAlign: 'center' }}>
             {error}
           </div>
         )}
@@ -112,7 +112,7 @@ const PatientForm = () => {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           {/* User profile credentials */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <h3 style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '8px', color: '#fff', fontSize: '1rem' }}>Demographic Details</h3>
+            <h3 style={{ borderBottom: '1px solid #e2e8f0', paddingBottom: '8px', color: '#0f172a', fontSize: '1rem' }}>Demographic Details</h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label>First Name</label>
@@ -145,7 +145,7 @@ const PatientForm = () => {
 
           {/* Demographics data */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <h3 style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '8px', color: '#fff', fontSize: '1rem' }}>Clinical Data</h3>
+            <h3 style={{ borderBottom: '1px solid #e2e8f0', paddingBottom: '8px', color: '#0f172a', fontSize: '1rem' }}>Clinical Data</h3>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>

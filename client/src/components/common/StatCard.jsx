@@ -9,13 +9,13 @@ const StatCard = ({ title, value, icon: Icon, description, trend, color = 'hsl(v
           <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'hsl(var(--muted))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             {title}
           </span>
-          <span style={{ fontSize: '2rem', fontWeight: 800, color: '#fff', lineHeight: 1.1 }}>
+          <span style={{ fontSize: '2rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.1 }}>
             {value}
           </span>
         </div>
         <div style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.03)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          backgroundColor: '#f8fafc',
+          border: '1px solid #e2e8f0',
           borderRadius: '12px',
           width: '46px',
           height: '46px',

@@ -98,7 +98,7 @@ function AppRoutes() {
       {/* Admin specific routes */}
       <Route path="/users" element={
         <ProtectedRoute allowedRoles={['admin']}>
-          <div style={{ color: '#fff' }}><h2>Users accounts manager placeholder</h2></div>
+          <div style={{ color: '#0f172a' }}><h2>Users accounts manager placeholder</h2></div>
         </ProtectedRoute>
       } />
       <Route path="/analytics" element={

@@ -28,7 +28,24 @@ exports.getAll = async (req, res, next) => {
 
       appointments.sort((a, b) => (b.appointmentDate > a.appointmentDate ? 1 : -1));
 
-      return res.json({ success: true, data: appointments, pagination: { total: appointments.length } });
+      // Enrich with nested patient/doctor/user data (join manually for Firestore)
+      const enriched = await Promise.all(appointments.map(async (appt) => {
+        try {
+          const patient = appt.patientId ? await findById(COLLECTIONS.PATIENTS, appt.patientId) : null;
+          const doctor  = appt.doctorId  ? await findById(COLLECTIONS.DOCTORS,  appt.doctorId)  : null;
+          const patUser = patient?.userId ? await findById(COLLECTIONS.USERS, patient.userId) : null;
+          const docUser = doctor?.userId  ? await findById(COLLECTIONS.USERS, doctor.userId)  : null;
+          return {
+            ...appt,
+            patient: patient ? { ...patient, user: patUser || { firstName: 'Unknown', lastName: '', email: '' } } : { user: { firstName: 'Unknown', lastName: '', email: '' } },
+            doctor:  doctor  ? { ...doctor,  user: docUser || { firstName: 'Unknown', lastName: '', email: '' } } : { user: { firstName: 'Unknown', lastName: '', email: '' } },
+          };
+        } catch (e) {
+          return { ...appt, patient: { user: { firstName: 'N/A', lastName: '', email: '' } }, doctor: { user: { firstName: 'N/A', lastName: '', email: '' } } };
+        }
+      }));
+
+      return res.json({ success: true, data: enriched, pagination: { total: enriched.length } });
     }
 
     const { page = 1, limit = 10, status, doctorId, patientId, date, dateFrom, dateTo } = req.query;

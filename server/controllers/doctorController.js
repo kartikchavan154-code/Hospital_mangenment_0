@@ -184,7 +184,21 @@ exports.getSchedule = async (req, res, next) => {
       const targetDate = date || new Date().toISOString().split('T')[0];
       const appointments = await findWhere(COLLECTIONS.APPOINTMENTS, [{ field: 'doctorId', op: '==', value: doctorId }]);
       const filtered = appointments.filter(a => a.appointmentDate === targetDate && a.status !== 'cancelled');
-      return res.json({ success: true, data: { date: targetDate, appointments: filtered } });
+
+      const enriched = await Promise.all(filtered.map(async (appt) => {
+        try {
+          const patient = appt.patientId ? await findById(COLLECTIONS.PATIENTS, appt.patientId) : null;
+          const patUser = patient?.userId ? await findById(COLLECTIONS.USERS, patient.userId) : null;
+          return {
+            ...appt,
+            patient: patient ? { ...patient, user: patUser || { firstName: 'Patient', lastName: '' } } : { user: { firstName: 'Patient', lastName: '' } },
+          };
+        } catch (e) {
+          return { ...appt, patient: { user: { firstName: 'Patient', lastName: '' } } };
+        }
+      }));
+
+      return res.json({ success: true, data: { date: targetDate, appointments: enriched } });
     }
 
     const { date } = req.query;

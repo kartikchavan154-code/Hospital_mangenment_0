@@ -9,8 +9,8 @@ const Card = ({ children, title, subtitle, style, ...props }) => {
       ...style
     }} {...props}>
       {(title || subtitle) && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', borderBottom: '1px solid rgba(255, 255, 255, 0.04)', paddingBottom: '12px' }}>
-          {title && <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff' }}>{title}</h3>}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', borderBottom: '1px solid #f1f5f9', paddingBottom: '12px' }}>
+          {title && <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a' }}>{title}</h3>}
           {subtitle && <span style={{ fontSize: '0.8rem', color: 'hsl(var(--muted))' }}>{subtitle}</span>}
         </div>
       )}

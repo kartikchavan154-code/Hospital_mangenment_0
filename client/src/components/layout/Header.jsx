@@ -25,7 +25,7 @@ const Header = () => {
       alignItems: 'center',
       justifyContent: 'space-between',
       padding: '0 30px',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+      borderBottom: '1px solid #e2e8f0',
       zIndex: 99
     }}>
       {/* Date Indicator */}
@@ -51,12 +51,12 @@ const Header = () => {
         </button>
 
         {/* Vertical divider */}
-        <div style={{ width: '1px', height: '24px', backgroundColor: 'rgba(255, 255, 255, 0.08)' }} />
+        <div style={{ width: '1px', height: '24px', backgroundColor: '#cbd5e1' }} />
 
         {/* User preview */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
           <div style={{ textAlign: 'right' }}>
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff', display: 'block' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0f172a', display: 'block' }}>
               Dr. {user.lastName}
             </span>
             <span style={{ fontSize: '0.75rem', color: 'hsl(var(--muted))' }}>

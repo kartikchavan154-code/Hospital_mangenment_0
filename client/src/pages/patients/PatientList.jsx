@@ -52,7 +52,7 @@ const PatientList = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Patients Database</h1>
+          <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Patients Database</h1>
           <p style={{ color: 'hsl(var(--muted))' }}>Review and manage clinical profiles, medical history and patient registers.</p>
         </div>
         <button onClick={() => navigate('/patients/new')} className="btn btn-primary">
@@ -76,7 +76,7 @@ const PatientList = () => {
               ) : (
                 patients.map((p) => (
                   <tr key={p.id}>
-                    <td style={{ color: '#fff', fontWeight: 600 }}>
+                    <td style={{ color: '#0f172a', fontWeight: 600 }}>
                       {p.user?.firstName} {p.user?.lastName}
                       <div style={{ fontSize: '0.75rem', color: 'hsl(var(--muted))', fontWeight: 400 }}>{p.user?.email}</div>
                     </td>

@@ -59,7 +59,7 @@ const Analytics = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div>
-        <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Clinical & Financial Analytics</h1>
+        <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Clinical & Financial Analytics</h1>
         <p style={{ color: 'hsl(var(--muted))' }}>Detailed hospital status charts regarding registrations, billing, and operational trends.</p>
       </div>
 
@@ -68,10 +68,10 @@ const Analytics = () => {
           <div style={{ width: '100%', height: 320 }}>
             <ResponsiveContainer>
               <BarChart data={trends} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="month" stroke="hsl(var(--muted))" style={{ fontSize: '0.75rem' }} />
                 <YAxis stroke="hsl(var(--muted))" style={{ fontSize: '0.75rem' }} />
-                <Tooltip contentStyle={{ backgroundColor: 'rgba(18, 24, 38, 0.95)', borderColor: 'rgba(255,255,255,0.08)' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#fff', borderColor: '#e2e8f0', color: '#0f172a' }} />
                 <Bar dataKey="registrations" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -88,10 +88,10 @@ const Analytics = () => {
                     <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="month" stroke="hsl(var(--muted))" style={{ fontSize: '0.75rem' }} />
                 <YAxis stroke="hsl(var(--muted))" style={{ fontSize: '0.75rem' }} />
-                <Tooltip contentStyle={{ backgroundColor: 'rgba(18, 24, 38, 0.95)', borderColor: 'rgba(255,255,255,0.08)' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#fff', borderColor: '#e2e8f0', color: '#0f172a' }} />
                 <Area type="monotone" dataKey="revenue" stroke="#10b981" fillOpacity={1} fill="url(#colorRev2)" strokeWidth={2} />
               </AreaChart>
             </ResponsiveContainer>
@@ -117,7 +117,7 @@ const Analytics = () => {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ backgroundColor: 'rgba(18, 24, 38, 0.95)', borderColor: 'rgba(255,255,255,0.08)' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#fff', borderColor: '#e2e8f0', color: '#0f172a' }} />
               </PieChart>
             </ResponsiveContainer>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.75rem', color: 'hsl(var(--muted))' }}>
@@ -133,24 +133,24 @@ const Analytics = () => {
 
         <Card title="Clinical Key Performance Indices" subtitle="Status logs indicators check">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '10px 0' }}>
-            <div style={{ border: '1px solid rgba(255,255,255,0.06)', padding: '16px', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.01)' }}>
+            <div style={{ border: '1px solid #e2e8f0', padding: '16px', borderRadius: '8px', backgroundColor: '#f8fafc' }}>
               <div style={{ color: 'hsl(var(--accent))', fontWeight: 700, fontSize: '1.5rem' }}>94.2%</div>
-              <strong style={{ display: 'block', fontSize: '0.85rem', color: '#fff', marginTop: '4px' }}>Patient Satisfaction Rating</strong>
+              <strong style={{ display: 'block', fontSize: '0.85rem', color: '#0f172a', marginTop: '4px' }}>Patient Satisfaction Rating</strong>
               <span style={{ fontSize: '0.75rem', color: 'hsl(var(--muted))' }}>Based on recent checkout polls.</span>
             </div>
-            <div style={{ border: '1px solid rgba(255,255,255,0.06)', padding: '16px', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.01)' }}>
+            <div style={{ border: '1px solid #e2e8f0', padding: '16px', borderRadius: '8px', backgroundColor: '#f8fafc' }}>
               <div style={{ color: '#fbbf24', fontWeight: 700, fontSize: '1.5rem' }}>14 mins</div>
-              <strong style={{ display: 'block', fontSize: '0.85rem', color: '#fff', marginTop: '4px' }}>Avg Check-in Wait-Time</strong>
+              <strong style={{ display: 'block', fontSize: '0.85rem', color: '#0f172a', marginTop: '4px' }}>Avg Check-in Wait-Time</strong>
               <span style={{ fontSize: '0.75rem', color: 'hsl(var(--muted))' }}>Calculated from check-in timestamps.</span>
             </div>
-            <div style={{ border: '1px solid rgba(255,255,255,0.06)', padding: '16px', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.01)' }}>
+            <div style={{ border: '1px solid #e2e8f0', padding: '16px', borderRadius: '8px', backgroundColor: '#f8fafc' }}>
               <div style={{ color: '#10b981', fontWeight: 700, fontSize: '1.5rem' }}>₹214.50</div>
-              <strong style={{ display: 'block', fontSize: '0.85rem', color: '#fff', marginTop: '4px' }}>Avg Bill Size</strong>
+              <strong style={{ display: 'block', fontSize: '0.85rem', color: '#0f172a', marginTop: '4px' }}>Avg Bill Size</strong>
               <span style={{ fontSize: '0.75rem', color: 'hsl(var(--muted))' }}>Average invoice total check size.</span>
             </div>
-            <div style={{ border: '1px solid rgba(255,255,255,0.06)', padding: '16px', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.01)' }}>
+            <div style={{ border: '1px solid #e2e8f0', padding: '16px', borderRadius: '8px', backgroundColor: '#f8fafc' }}>
               <div style={{ color: '#f87171', fontWeight: 700, fontSize: '1.5rem' }}>2.1%</div>
-              <strong style={{ display: 'block', fontSize: '0.85rem', color: '#fff', marginTop: '4px' }}>Cancellation Rate</strong>
+              <strong style={{ display: 'block', fontSize: '0.85rem', color: '#0f172a', marginTop: '4px' }}>Cancellation Rate</strong>
               <span style={{ fontSize: '0.75rem', color: 'hsl(var(--muted))' }}>Unconfirmed checkin slots.</span>
             </div>
           </div>

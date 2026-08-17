@@ -51,7 +51,7 @@ const AdminDashboard = () => {
         }
         if (deptRes.data.success) {
           setDeptData(deptRes.data.data.map(item => ({
-            name: item['department.name'] || 'Other',
+            name: item.department?.name || item['department.name'] || 'Other',
             value: parseInt(item.doctorCount)
           })));
         }
@@ -72,7 +72,7 @@ const AdminDashboard = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div>
-        <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Administrative Overview</h1>
+        <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Administrative Overview</h1>
         <p style={{ color: 'hsl(var(--muted))' }}>Hospital resource metrics, diagnostic data, and revenue statements.</p>
       </div>
 
@@ -96,10 +96,10 @@ const AdminDashboard = () => {
                     <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="name" stroke="hsl(var(--muted))" style={{ fontSize: '0.75rem' }} />
                 <YAxis stroke="hsl(var(--muted))" style={{ fontSize: '0.75rem' }} />
-                <Tooltip contentStyle={{ backgroundColor: 'rgba(18, 24, 38, 0.95)', borderColor: 'rgba(255,255,255,0.08)' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#fff', borderColor: '#e2e8f0', color: '#0f172a' }} />
                 <Area type="monotone" dataKey="revenue" stroke="hsl(var(--primary))" fillOpacity={1} fill="url(#colorRev)" strokeWidth={2} />
               </AreaChart>
             </ResponsiveContainer>
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ backgroundColor: 'rgba(18, 24, 38, 0.95)', borderColor: 'rgba(255,255,255,0.08)' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#fff', borderColor: '#e2e8f0', color: '#0f172a' }} />
               </PieChart>
             </ResponsiveContainer>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.75rem', color: 'hsl(var(--muted))' }}>
@@ -147,7 +147,7 @@ const AdminDashboard = () => {
             ) : (
               recentActivity.map((a) => (
                 <tr key={a.id}>
-                  <td style={{ color: '#fff', fontWeight: 600 }}>{a.patient.user.firstName} {a.patient.user.lastName}</td>
+                  <td style={{ color: '#0f172a', fontWeight: 600 }}>{a.patient.user.firstName} {a.patient.user.lastName}</td>
                   <td>Dr. {a.doctor.user.firstName} {a.doctor.user.lastName}</td>
                   <td>{a.appointmentDate} at {a.appointmentTime}</td>
                   <td>
@@ -169,10 +169,10 @@ const AdminDashboard = () => {
               {workloadData.map((w, index) => (
                 <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                    <span style={{ fontWeight: 600, color: '#fff' }}>{w.name}</span>
+                    <span style={{ fontWeight: 600, color: '#0f172a' }}>{w.name}</span>
                     <span style={{ color: 'hsl(var(--accent))' }}>{w.appointments} appointments</span>
                   </div>
-                  <div style={{ width: '100%', height: '6px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '9999px', overflow: 'hidden' }}>
+                  <div style={{ width: '100%', height: '6px', backgroundColor: '#e2e8f0', borderRadius: '9999px', overflow: 'hidden' }}>
                     <div style={{
                       width: `${Math.min(100, (w.appointments / 15) * 100)}%`,
                       height: '100%',

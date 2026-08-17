@@ -39,7 +39,7 @@ const ReceptionistDashboard = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800 }}>Reception Desk Control</h1>
+          <h1 style={{ color: '#0f172a', fontSize: '1.8rem', fontWeight: 800 }}>Reception Desk Control</h1>
           <p style={{ color: 'hsl(var(--muted))' }}>Monitor incoming patients, schedule appointments, and manage check-ins/billing.</p>
         </div>
         
@@ -70,9 +70,9 @@ const ReceptionistDashboard = () => {
             ) : (
               appointments.map((a) => (
                 <tr key={a.id}>
-                  <td style={{ color: '#fff', fontWeight: 600 }}>{a.appointmentTime}</td>
-                  <td>{a.patient.user.firstName} {a.patient.user.lastName}</td>
-                  <td>Dr. {a.doctor.user.firstName} {a.doctor.user.lastName}</td>
+                  <td style={{ color: '#0f172a', fontWeight: 600 }}>{a.appointmentTime}</td>
+                  <td>{a.patient?.user?.firstName || 'Patient'} {a.patient?.user?.lastName || ''}</td>
+                  <td>Dr. {a.doctor?.user?.firstName || 'Doctor'} {a.doctor?.user?.lastName || ''}</td>
                   <td>
                     <span className={`badge badge-${a.status === 'completed' ? 'success' : 'warning'}`}>
                       {a.status}
@@ -91,8 +91,8 @@ const ReceptionistDashboard = () => {
             ) : (
               unpaidBills.map((b) => (
                 <tr key={b.id}>
-                  <td style={{ color: '#fff', fontWeight: 600 }}>{b.invoiceNumber}</td>
-                  <td>{b.patient.user.firstName} {b.patient.user.lastName}</td>
+                  <td style={{ color: '#0f172a', fontWeight: 600 }}>{b.invoiceNumber}</td>
+                  <td>{b.patient?.user?.firstName || 'Patient'} {b.patient?.user?.lastName || ''}</td>
                   <td style={{ color: 'hsl(var(--accent))', fontWeight: 600 }}>₹{parseFloat(b.totalAmount).toFixed(2)}</td>
                   <td>
                     <button onClick={() => navigate(`/billing`)} className="btn btn-primary" style={{ padding: '4px 10px', fontSize: '0.75rem' }}>

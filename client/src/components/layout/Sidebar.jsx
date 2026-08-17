@@ -57,7 +57,7 @@ const Sidebar = () => {
       top: 0,
       display: 'flex',
       flexDirection: 'column',
-      borderRight: '1px solid rgba(255, 255, 255, 0.06)',
+      borderRight: '1px solid #e2e8f0',
       zIndex: 100
     }}>
       {/* Brand Logo */}
@@ -66,7 +66,7 @@ const Sidebar = () => {
         display: 'flex',
         alignItems: 'center',
         gap: '12px',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.06)'
+        borderBottom: '1px solid #e2e8f0'
       }}>
         <div style={{
           background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%)',
@@ -79,12 +79,12 @@ const Sidebar = () => {
           fontWeight: 'bold',
           color: '#fff',
           fontSize: '1.2rem',
-          boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)'
+          boxShadow: '0 0 15px rgba(37, 99, 235, 0.3)'
         }}>
           H
         </div>
         <div>
-          <span style={{ fontWeight: 700, fontSize: '1.1rem', letterSpacing: '0.5px', color: '#fff' }}>HOSPITAL</span>
+          <span style={{ fontWeight: 700, fontSize: '1.1rem', letterSpacing: '0.5px', color: '#0f172a' }}>HOSPITAL</span>
           <span style={{ color: 'hsl(var(--accent))', fontWeight: 600, fontSize: '0.8rem', display: 'block', marginTop: '-3px' }}>MANAGEMENT</span>
         </div>
       </div>
@@ -104,8 +104,8 @@ const Sidebar = () => {
                 padding: '12px 16px',
                 borderRadius: 'var(--radius-sm)',
                 textDecoration: 'none',
-                color: isActive ? '#fff' : 'hsl(var(--muted))',
-                backgroundColor: isActive ? 'rgba(99, 102, 241, 0.15)' : 'transparent',
+                color: isActive ? '#2563eb' : '#64748b',
+                backgroundColor: isActive ? '#eff6ff' : 'transparent',
                 borderLeft: isActive ? '3px solid hsl(var(--primary))' : '3px solid transparent',
                 transition: 'all 0.2s ease',
                 fontWeight: isActive ? 600 : 400
@@ -121,7 +121,7 @@ const Sidebar = () => {
       {/* Logout Profile Area */}
       <div style={{
         padding: '20px 16px',
-        borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+        borderTop: '1px solid #e2e8f0',
         display: 'flex',
         flexDirection: 'column',
         gap: '12px'
@@ -131,12 +131,12 @@ const Sidebar = () => {
             width: '40px',
             height: '40px',
             borderRadius: '50%',
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            backgroundColor: '#e2e8f0',
             backgroundImage: `url(${user.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${user.firstName}`})`,
             backgroundSize: 'cover'
           }} />
           <div style={{ flex: 1, minWidth: 0 }}>
-            <span style={{ fontWeight: 600, fontSize: '0.9rem', color: '#fff', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <span style={{ fontWeight: 600, fontSize: '0.9rem', color: '#0f172a', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {user.firstName} {user.lastName}
             </span>
             <span style={{ fontSize: '0.75rem', color: 'hsl(var(--accent))', textTransform: 'uppercase', fontWeight: 700 }}>
