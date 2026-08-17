@@ -96,9 +96,9 @@ const start = async () => {
 
     initializeTransporter();
 
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`\n🏥 Hospital Management System API`);
-      console.log(`   Server running on http://localhost:${PORT}`);
+      console.log(`   Server running on http://0.0.0.0:${PORT}`);
       console.log(`   Database Mode: ${dbType.toUpperCase()}`);
       console.log(`   Environment: ${process.env.NODE_ENV || 'development'}\n`);
     });
