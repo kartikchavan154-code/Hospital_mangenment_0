@@ -8,7 +8,9 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Initialize axios configuration
-  axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+  const rawAuthUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+  const cleanAuthUrl = rawAuthUrl.replace(/\/$/, '');
+  axios.defaults.baseURL = cleanAuthUrl.endsWith('/api') ? cleanAuthUrl : `${cleanAuthUrl}/api`;
 
   useEffect(() => {
     const token = localStorage.getItem('token');
